@@ -20,10 +20,27 @@ if not os.path.isfile('dist/checkpoints.json'):
     exit()
 
 checkpoints: list[float]
-with open('dist/checkpoints.json', encoding="utf-8") as file: checkpoints = json.load(file)
-checkpoint_time = checkpoints[argv[2] if (len(argv) > 2) else -1]
+try:
+    with open('dist/checkpoints.json', encoding="utf-8") as file: checkpoints = json.load(file)
+
+except json.JSONDecodeError:
+    print('Could not parse previous checkpoints. Fix or delete the dist/checkpoints.json file and rerun the script.')
+    exit()
+
+try:
+    checkpoint_time = checkpoints[int(argv[2]) if (len(argv) > 2) else -1]
+
+except (ValueError, IndexError):
+    print('The second argument must be either empty or a valid checkpoint Id')
+    exit()
+
 folder_filter: dict[str, FolderFilterOptions]
-with open(argv[1], encoding="utf-8") as file: folder_filter = json.load(file)
+try:
+    with open(argv[1], encoding="utf-8") as file: folder_filter = json.load(file)
+
+except (IndexError, FileNotFoundError, json.JSONDecodeError):
+    print('The first argument must be a path to an existing file containing valid JSON content')
+    exit()
 
 def handle_folder(path: str, options: FolderFilterOptions = {'folders': {'recursive': True}, 'files': True}) -> None:
     folder_items = os.listdir(path)
