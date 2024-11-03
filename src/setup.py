@@ -12,7 +12,7 @@ class FolderFilterOptions(TypedDict):
     files: bool
 
 folder_filter: dict[str, FolderFilterOptions]
-with open(argv[1]) as file: folder_filter = json.load(file)
+with open(argv[1], encoding="utf-8") as file: folder_filter = json.load(file)
 file_list: dict[str, float] = {}
 
 def handle_folder(path: str, options: FolderFilterOptions = {'folders': {'recursive': True}, 'files': True}) -> None:
@@ -35,4 +35,4 @@ def handle_folder(path: str, options: FolderFilterOptions = {'folders': {'recurs
 
 for (path, options) in folder_filter.items(): handle_folder(path, options)
 os.makedirs('dist', exist_ok=True)  
-with open('dist/data.json', 'w') as file: json.dump(file_list, file)
+with open('dist/data.json', 'w', encoding="utf-8") as file: json.dump(file_list, file)
