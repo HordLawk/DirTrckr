@@ -1,6 +1,5 @@
 from typing import TypedDict
 import json
-from datetime import datetime
 import os
 from sys import argv
 
@@ -13,7 +12,7 @@ folder_filter: dict[str, FolderFilterOptions]
 with open(argv[1]) as file:
     folder_filter = json.load(file)
 
-file_list: dict[str, datetime] = {}
+file_list: dict[str, float] = {}
 
 def handle_folder(path: str, options: FolderFilterOptions = {'subfolders': True, 'files': True}) -> None:
     folder_items = os.listdir(path)
