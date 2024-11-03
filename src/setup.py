@@ -33,9 +33,6 @@ def handle_folder(path: str, options: FolderFilterOptions = {'subfolders': True,
     for (subfolder_name, subfolder_options) in options['subfolders'].items():
         handle_folder(os.path.join(path, subfolder_name), subfolder_options)
 
-for (path, options) in folder_filter.items():
-    handle_folder(path, options)
-
+for (path, options) in folder_filter.items(): handle_folder(path, options)
 os.makedirs('dist', exist_ok=True)  
-with open('dist/data.json', 'w') as file:
-    json.dump(file_list, file)
+with open('dist/data.json', 'w') as file: json.dump(file_list, file)
