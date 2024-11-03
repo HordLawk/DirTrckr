@@ -1,7 +1,7 @@
 from typing import TypedDict
 import json
-import os
 from sys import argv
+import os
 
 class FolderFilterOptions(TypedDict):
     class SubfoldersOptions(TypedDict):
