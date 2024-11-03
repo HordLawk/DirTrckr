@@ -21,10 +21,9 @@ def handle_folder(path: str, options: FolderFilterOptions = {'folders': {'recurs
     if ('files' in options) and options['files']:
         for item_name in folder_items:
             item_path = os.path.join(path, item_name)
-            if os.path.isfile(item_path):
-                file_mtime = os.path.getmtime(item_path)
-                if not item_path in file_list: print(f'[NEW] {item_path}')
-                elif file_mtime != file_list[item_path]: print(f'[MOD] {item_path}')
+            file_mtime = os.path.getmtime(item_path)
+            if not item_path in file_list: print(f'[NEW] {item_path}')
+            elif file_mtime != file_list[item_path]: print(f'[MOD] {item_path}')
     
     if not 'folders' in options: return
     if 'overrides' in options['folders']:
