@@ -1,0 +1,26 @@
+{
+    "C:\\": {
+        "folders": {
+            "recursive": true,
+            "overrides": {
+                "this_is_a_subfolder": {
+                    "folders": {
+                        "recursive": false,
+                        "overrides": {
+                            "false_rules_can_be_omitted": {
+                                "folders": {
+                                    "recursive": true
+                                }
+                            }
+                        }
+                    },
+                    "files": false
+                },
+                "this_is_another_subfolder": {
+                    "files": true
+                }
+            }
+        },
+        "files": true
+    }
+}
